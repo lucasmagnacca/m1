@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 // No cambies los nombres de las funciones.
 
 function factorear(num) {
@@ -6,7 +6,16 @@ function factorear(num) {
   // los factores por los cuales se va dividiendo a dicho número (De menor a mayor)
   // Ej: factorear(180) --> [1, 2, 2, 3, 3, 5] Ya que 1x2x2x3x3x5 = 180 y son todos números primos
   // Tu código:
-
+  var array = [1];
+  var divisor = 2;
+  while (num !== 1)
+    if (num % divisor === 0) {
+      array.push(divisor);
+      num = num / divisor;
+    } else {
+      divisor++;
+    }
+  return array;
 }
 
 function bubbleSort(array) {
@@ -14,9 +23,20 @@ function bubbleSort(array) {
   // el array recibido como parámetro
   // Devolver el array ordenado resultante
   // Tu código:
-
+  let swap = true;
+  while (swap) {
+    swap = false;
+    for (let i = 0; i < array.length - 1; i++) {
+      if (array[i] > array[i + 1]) {
+        var aux = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = aux;
+        swap = true;
+      }
+    }
+  }
+  return array;
 }
-
 
 function insertionSort(array) {
   // Implementar el método conocido como insertionSort para ordenar de menor a mayor
@@ -24,8 +44,19 @@ function insertionSort(array) {
   // Devolver el array ordenado resultante
   // Tu código:
 
+  {
+    for (let i = 1; i < array.length; i++) {
+      let j = i - 1;
+      let temp = array[i];
+      while (j >= 0 && array[j] > temp) {
+        array[j + 1] = array[j];
+        j--;
+      }
+      array[j + 1] = temp;
+    }
+    return array;
+  }
 }
-
 
 function selectionSort(array) {
   // Implementar el método conocido como selectionSort para ordenar de menor a mayor
@@ -33,8 +64,22 @@ function selectionSort(array) {
   // Devolver el array ordenado resultante
   // Tu código:
 
-}
+  for (let i = 0; i < array.length - 1; i++) {
+    let min = i;
+    for (let j = i + 1; j < array.length; j++) {
+      if (array[min] > array[j]) {
+        min = j;
+      }
+    }
+    if (i !== min) {
+      var aux = array[i];
+      array[i] = array[min];
+      array[min] = aux;
+    }
+  }
 
+  return array;
+}
 
 // No modificar nada debajo de esta línea
 // --------------------------------
